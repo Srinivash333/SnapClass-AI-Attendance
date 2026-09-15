@@ -135,6 +135,4 @@ The application automatically initializes indexes on startup for optimal query p
 
 ---
 
-## 📄 License
 
-This project is open-source and available under the MIT License.
