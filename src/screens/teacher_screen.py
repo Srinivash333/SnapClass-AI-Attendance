@@ -24,10 +24,9 @@ from src.database.db import (
     create_teacher,
     teacher_login,
     get_teacher_subjects,
-    get_attendance_for_teacher
+    get_attendance_for_teacher,
+    get_enrolled_students_with_profiles,
 )
-
-from src.database.config import supabase
 
 from src.components.dialog_create_subject import create_subject_dialog
 from src.components.dialog_share_subject import share_subject_dialog
@@ -387,21 +386,10 @@ def teacher_tab_take_attendance():
                 # -------------------------------------------------
 
                 try:
-                    enrolled_res = (
-                        supabase
-                        .table("subject_students")
-                        .select("*, students(*)")
-                        .eq(
-                            "subject_id",
-                            selected_subject_id
-                        )
-                        .execute()
-                    )
+                    enrolled_students = get_enrolled_students_with_profiles(selected_subject_id)
                 except Exception as error:
                     st.error(f"Could not load students for this subject: {error}")
                     return
-
-                enrolled_students = enrolled_res.data or []
 
                 # -------------------------------------------------
                 # IMPORTANT FIX

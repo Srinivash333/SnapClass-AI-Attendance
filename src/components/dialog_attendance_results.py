@@ -1,9 +1,5 @@
 import streamlit as st
-from src.database.db import enroll_student_to_subject
-from src.database.config import supabase
 import time
-
-
 from src.database.db import create_attendance
 
 def show_attendance_result(df, logs):

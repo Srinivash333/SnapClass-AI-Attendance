@@ -141,7 +141,7 @@ def student_dashboard():
 
         for i, sub_node in enumerate(subjects):
 
-            # Supabase relationship may return:
+            # Database relationship may return:
             # {"subjects": {...}}
             sub = sub_node.get("subjects")
 
